@@ -1,20 +1,23 @@
-name: shell script execution
-on:
-  push:
-    branches:
-      - main
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-        
-      - name: list the files
-        run: ls -lrt
-        
-      - name: execute the shell script 1
-        run: |
-          chmod +x shell.sh
-          ./shell.sh
+name: 03-ascii-script-workflow
 
+on: push
+
+jobs:
+    ascii_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout repo
+          uses: actions/checkout@v4
+        
+        - name: List repo Files
+          run: ls -ltra  
+          
+        - name: Executing shell script
+          run: |
+             chmod +x shell.sh
+             ./shell.sh
+
+                
+
+
+              

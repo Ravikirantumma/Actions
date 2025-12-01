@@ -13,7 +13,7 @@ jobs:
       - name: list the files
         run: ls -lrt
         
-      - name: execute the shell script
+      - name: execute the shell script 1
         run: |
           chmod +x shell.sh
           ./shell.sh

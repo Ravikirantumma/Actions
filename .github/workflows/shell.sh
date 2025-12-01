@@ -1,0 +1,10 @@
+ls -ltra
+cat README.md
+sudo apt-get install cowsay -y
+cowsay -f dragon "run for cover, I am DRAGON ..RAWR" >> dragon.txt
+grep -i "dragon" dragon.txt
+cat dragon.txt
+run: ls -ltra
+        
+      
+        

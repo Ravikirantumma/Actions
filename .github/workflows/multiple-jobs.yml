@@ -42,6 +42,7 @@ jobs:
         run: grep -i "dragon" dragon.txt
 
   build_job3:
+    needs: build_job2
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo

@@ -1,30 +1,48 @@
-name: multiple job for gihub
+name: multiple job for github
+
 on:
-    push
+  push:
+
 jobs:
-    build_job1:
-        runs-on: ubuntu-latest
-        steps:
-        - name: install cowsay program
-          run: sudo apt-get update && sudo apt-get install cowsay -y
-        
-        - name: execute cowsay cmd
-          run: cowsay -f dragon "Run for cover, I am Dragon" dragon.txt
-        
-        - name: sleep for 30 sec
-          run: sleep 30
-    
-    build_job2:
-        runs-on: ubuntu-latest
-        steps:
-        - name: sleep for 10 sec
-          run: sleep 10
-        
-        - name: tests for exist
-          run: grep -i "dragon" dragon.txt
-    
-    build_job3:
-        runs-on: nginx:latest
-        steps:
-        - name: install nginx software
-          run:  sudo apt-get update && sudo apt install -y python3 python3-venv python3-pip nginx
+  build_job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: install cowsay program
+        run: sudo apt-get update && sudo apt-get install cowsay -y
+
+      - name: execute cowsay cmd
+        run: cowsay -f dragon "Run for cover, I am Dragon" > dragon.txt
+
+      - name: sleep for 30 sec
+        run: sleep 30
+
+  build_job2:
+    needs: build_job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: sleep for 10 sec
+        run: sleep 10
+
+      - name: tests for exist
+        run: grep -i "dragon" dragon.txt
+
+  build_job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: install nginx software and python
+        run: sudo apt-get update && sudo apt install -y python3 python3-venv python3-pip nginx
+
+      - name: show nginx version
+        run: nginx -v
+
+      - name: show python version
+        run: python3 --version

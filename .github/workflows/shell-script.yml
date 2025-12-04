@@ -1,4 +1,4 @@
-name: ascii value printing
+name: ascii value printing value
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
 
       - name: list repo files
         run: ls -lrt
-      
+
       - name: executing shell script
         run: |
           chmod +x shell-script.sh

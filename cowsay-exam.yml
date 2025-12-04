@@ -1,0 +1,12 @@
+name: sample cowsay program
+on: push
+jobs:
+  cow:
+    name: cowsay
+    runs-on: ubuntu-latest
+    steps:
+      - name: ship in
+        uses: mscoutermarsh/cowsays-action@master
+        with:
+          text: 'ship ship ship'
+          color: 'red'

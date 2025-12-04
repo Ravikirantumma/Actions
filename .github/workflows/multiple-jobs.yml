@@ -1,0 +1,30 @@
+name: multiple job for gihub
+on:
+    push
+jobs:
+    build_job1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: install cowsay program
+          run: sudo apt-get update && sudo apt-get install cowsay -y
+        
+        - name: execute cowsay cmd
+          run: cowsay -f dragon "Run for cover, I am Dragon" dragon.txt
+        
+        - name: sleep for 30 sec
+          run: sleep 30
+    
+    build_job2:
+        runs-on: ubuntu-latest
+        steps:
+        - name: sleep for 10 sec
+          run: sleep 10
+        
+        - name: tests for exist
+          run: grep -i "dragon" dragon.txt
+    
+    build_job3:
+        runs-on: nginx:latest
+        steps:
+        - name: install nginx software
+          run:  sudo apt-get update && sudo apt install -y python3 python3-venv python3-pip nginx

@@ -1,0 +1,25 @@
+name: ascii value printing
+on:
+  push
+jobs:
+  ascii_job:
+    runs-on:
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+      
+      - name: install the cowsay program
+        run: apt-get update && apt-get install cowsay -y
+      
+      - name: install cowsay cmd
+        run: cowsay -f dragon "Run for cover, i am a DRAGON.....RAWR" > dragon.txt
+
+      - name: test file exist
+        run: grep -i "dragon" dragon.txt
+
+      - name: read file
+        run: cat dragon.txt
+
+      - name: list repo files
+        run: ls -lrt
+ 

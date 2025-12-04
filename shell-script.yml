@@ -1,0 +1,17 @@
+name: ascii value printing
+on:
+  push
+jobs:
+  ascii_job:
+    runs-on:
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: list repo files
+        run: ls -lrt
+      
+      - name: executing shell script
+        run: |
+          chmod +x shell-script.sh
+          ./shell-script.sh

@@ -10,16 +10,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install cowsay program
-        run: sudo apt-get update && sudo apt-get install -y cowsay
+      - name: install cowsay program
+        run: sudo apt-get update && sudo apt-get install cowsay -y
 
-      - name: Create dragon.txt using cowsay
+      - name: execute cowsay cmd
         run: cowsay -f dragon "Run for cover, I am Dragon" > dragon.txt
 
-      - name: Show dragon.txt
-        run: ls -l dragon.txt && cat dragon.txt
+      - name: sleep for 30 sec
+        run: sleep 30
 
-      - name: Upload dragon.txt artifact
+      - name: upload dragon.txt artifact
         uses: actions/upload-artifact@v4
         with:
           name: dragon-txt
@@ -29,16 +29,18 @@ jobs:
     needs: build_job1
     runs-on: ubuntu-latest
     steps:
-      - name: Download dragon.txt artifact
+      - name: download dragon.txt artifact
         uses: actions/download-artifact@v4
         with:
           name: dragon-txt
-          # downloads into current working directory by default
 
-      - name: Show workspace files
-        run: ls -la
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: tests for exist (grep)
+      - name: sleep for 10 sec
+        run: sleep 10
+
+      - name: tests for exist
         run: grep -i "dragon" dragon.txt
 
   build_job3:
@@ -47,11 +49,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install nginx software and python
+      - name: install nginx software and python
         run: sudo apt-get update && sudo apt install -y python3 python3-venv python3-pip nginx
 
-      - name: Show nginx version
+      - name: show nginx version
         run: nginx -v
 
-      - name: Show python version
+      - name: show python version
         run: python3 --version

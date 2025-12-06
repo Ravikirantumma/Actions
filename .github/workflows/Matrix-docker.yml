@@ -23,4 +23,36 @@ jobs:
         - name: run image
           run: docker run hello-world
 
+    deploy-on-nginx:
+        needs: deploy-on-windows
+        runs-on: nginx-latest
+        steps:
+        - name: echo docker details
+          run: docker info
+        
+        - name: run image
+          run: docker run hello-world
+
+    deploy-on-busybox:
+        needs: deploy-on-nginx
+        runs-on: busybox-latest
+        steps:
+        - name: echo docker details
+          run: docker info
+        
+        - name: run image
+          run: docker run hello-world
+
+    install-java:
+         needs: deploy-on-busybox
+         runs-on: debian-latest
+         steps:
+         - name: setup java
+           uses: action/setup-java@v5
+           with:
+            distribution: 'temurin' # See 'Supported distributions' for available options
+            java-version: '21'
+      
+
+
 

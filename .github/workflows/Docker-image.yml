@@ -6,17 +6,37 @@ on:
       - main
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        env:
+          CONTAINER_REGISTRY: docker
+          DOCKER_USERNAME: RAVIKIRAN
+          DOCKER_PASSWORD: RAVIKIRAN
+          IMAGE_NAME: github-action-nginx
+        run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
-      - name: docker build
-        run: docker build -t docker.io/dockerusername/imagename:latest .
+      - name: docker login
+        env:
+          DOCKER_USERNAME: RAVIKIRAN
+          DOCKER_PASSWORD: RAVIKIRAN
+        run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
-      - name: login docker
-        run: docker login -u tummaravikiranreddy1 -p R@vikiran123
+      - name: Docker publish
+        env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_USERNAME: RAVIKIRAN
+          IMAGE_NAME: github-action-nginx
+        run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
-      - name: docker push
-        run: docker push docker.io/dockerusername/imageuame:latest
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker run
+        env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_USERNAME: RAVIKIRAN
+          IMAGE_NAME: github-actions-nginx
+        run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest

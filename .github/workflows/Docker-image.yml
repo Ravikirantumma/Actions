@@ -1,0 +1,17 @@
+name: docker image
+on:
+    path:
+        branches:
+        - main:
+jobs:
+    build:
+        runs-on: latest-ubuntu
+        steps:
+        - name: docker build
+          run: docker build -t docker.io/dockerUsername/imageName:latest  
+
+        - name: login docker
+          run: docker login --username: tummaravikiranreddy1 password:R@vikiran123
+
+        - name: docker push
+          run: docker push docker.io/dockerUsername/imageName:latest

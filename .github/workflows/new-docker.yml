@@ -7,7 +7,7 @@ on:
 env:
           CONTAINER_REGISTRY: docker.io
           DOCKER_USERNAME: tummaravikiranreddy1
-          DOCKER_PASSWORD: R@vikiran123
+          DOCKER_PASSWORD: &&&&&&
           IMAGE_NAME: appointment-service
 
 jobs:

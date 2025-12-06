@@ -35,7 +35,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-artifact
-          path: .
 
       - name: list files
         run: ls -lrt
@@ -51,7 +50,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-artifact
-          path: .
 
       - name: view the file
         run: cat dragon.txt

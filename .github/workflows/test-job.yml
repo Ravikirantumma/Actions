@@ -7,7 +7,6 @@ on:
 
 jobs:
     build_job1:
-  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout

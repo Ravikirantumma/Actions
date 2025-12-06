@@ -8,8 +8,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: forst creating the file
-          uses: sudo apt-get update && sudo ap-get install -y cowsay
-
+          uses: sudo apt-get update && sudo apt-get -y install cowsay
+          
         - name: execute cowsay cmd
           uses: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt"
 

@@ -11,7 +11,8 @@ jobs:
           run: docker build -t docker.io/dockerUsername/imageName:latest .
 
         - name: login docker
-          run: docker login --username: tummaravikiranreddy1 password:R@vikiran123
+          run: docker login docker login -u tummaravikiranreddy1 -p R@vikiran123
+
 
         - name: docker push
           run: docker push docker.io/dockerUsername/imageName:latest

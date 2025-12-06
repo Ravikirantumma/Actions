@@ -22,7 +22,7 @@ jobs:
       - name: docker login
         env:
           DOCKER_USERNAME: tummaravikiranreddy1
-          DOCKER_PASSWORD: R@vikiran123
+          DOCKER_PASSWORD: *******
         run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
       - name: Docker publish

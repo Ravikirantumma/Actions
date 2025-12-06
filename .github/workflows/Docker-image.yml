@@ -1,18 +1,22 @@
 name: docker image
+
 on:
-  path:
+  push:
     branches:
-      - main:
+      - main
+
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - name: docker build
-          run: docker build -t docker.io/dockerUsername/imageName:latest .
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
 
-        - name: login docker
-          run: docker login docker login -u tummaravikiranreddy1 -p R@vikiran123
+      - name: docker build
+        run: docker build -t docker.io/dockerUsername/imageName:latest .
 
+      - name: login docker
+        run: docker login -u tummaravikiranreddy1 -p R@vikiran123
 
-        - name: docker push
-          run: docker push docker.io/dockerUsername/imageName:latest
+      - name: docker push
+        run: docker push docker.io/dockerUsername/imageName:latest

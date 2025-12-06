@@ -1,4 +1,4 @@
-name: docker matrix changes
+name: docker matrix changes1
 on:
   push:
   workflow_dispatch:
@@ -21,3 +21,4 @@ jobs:
         
         - name: run image
           run: docker run hello-world
+

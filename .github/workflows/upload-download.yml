@@ -1,0 +1,53 @@
+name: upload nadownlaod the files
+on:
+    push:
+        branches:
+            - main:
+jobs:
+    jobs_first1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: forst creating the file
+          uses: sudo apt-get update && sudo apt-get -y install cowsay
+
+        - name: execute cowsay cmd
+          uses: cowsay -f dragon "h o ware you today Dragon" > dragon.txt
+
+        - name: upload text file 
+          uses: actions/upload-artifact@v4
+          with:
+            name: my-artifact
+            path: dragon.txt
+
+    jobs_first2:
+        needs : jobs_first1
+        runs-on: ubuntu-lates
+        steps:
+            - name: install java version
+              uses: actions/checkout@v4
+              with:
+                java-version: '17'
+                distribution: 'temurin'
+
+            - name: download text file 
+              uses: actions/upload-artifact@v4
+              with:
+                name: dragon-text file
+    
+    jobs_second3:
+        needs: jobs_first2
+        runs-on: ubuntu-lates
+        steps:
+            - name: install java version
+              uses: actions/checkout@v4
+              with:
+                java-version: '17'
+                distribution: 'temurin'
+
+            - name: download text file 
+              uses: actions/upload-artifact@v4
+              with:
+                name: dragon-text file
+            - name: view the file
+              uses: cat dragon.txt
+

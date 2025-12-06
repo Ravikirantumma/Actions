@@ -1,25 +1,27 @@
 name: ascii value printing
+
 on:
   push
+
 jobs:
   ascii_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v6
+      - name: Checkout repo
+        uses: actions/checkout@v4
       
-      - name: install the cowsay program
-        run: apt-get update && apt-get install cowsay -y
+      - name: Install the cowsay program
+        run: sudo apt-get update && sudo apt-get install cowsay -y
       
-      - name: install cowsay cmd
+      - name: Run cowsay and write to file
         run: cowsay -f dragon "Run for cover, i am a DRAGON.....RAWR" > dragon.txt
 
-      - name: test file exist
+      - name: Test file exists and has 'dragon'
         run: grep -i "dragon" dragon.txt
 
-      - name: read file
+      - name: Read file
         run: cat dragon.txt
 
-      - name: list repo files
+      - name: List repo files
         run: ls -lrt
- 

@@ -25,7 +25,7 @@ jobs:
 
     deploy-on-nginx:
         needs: deploy-on-windows
-        runs-on: nginx-latest
+        runs-on: oraclelinux-latest
         steps:
         - name: echo docker details
           run: docker info
@@ -53,6 +53,7 @@ jobs:
             distribution: 'temurin' # See 'Supported distributions' for available options
             java-version: '21'
       
+
 
 
 

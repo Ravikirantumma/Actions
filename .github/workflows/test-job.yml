@@ -1,4 +1,4 @@
-name: testing job
+name: testing job lets see
 
 on:
   push:
@@ -29,6 +29,3 @@ jobs:
 
       - name: build with maven
         run: mvn clean install
-
-
-

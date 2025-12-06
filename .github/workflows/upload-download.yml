@@ -11,7 +11,7 @@ jobs:
           uses: sudo apt-get update && sudo apt-get -y install cowsay
 
         - name: execute cowsay cmd
-          uses: cowsay -f dragon "h o ware you today Dragon" > dragon.txt
+          uses: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt"
 
         - name: upload text file 
           uses: actions/upload-artifact@v4

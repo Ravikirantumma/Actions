@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_USERNAME: tummaravikiranreddy1
+          DOCKER_PASSWORD: R@vikiran123
+          IMAGE_NAME: appointment-service
 
 jobs:
   docker:
@@ -13,23 +18,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: docker build
-        env:
-          CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: tummaravikiranreddy1
-          IMAGE_NAME: appointment-service
+        
         run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest .
 
       - name: docker login
-        env:
-          DOCKER_USERNAME: tummaravikiranreddy1
-          DOCKER_PASSWORD: *******
         run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
       - name: Docker publish
-        env:
-          CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: tummaravikiranreddy1
-          IMAGE_NAME: appointment-service
         run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
   deploy:
@@ -37,8 +32,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: docker run
-        env:
-          CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: tummaravikiranreddy1
-          IMAGE_NAME: appointment-service
         run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest

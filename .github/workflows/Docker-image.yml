@@ -1,11 +1,11 @@
 name: docker image
 on:
-    path:
-        branches:
-        - main:
+  path:
+    branches:
+      - main:
 jobs:
     build:
-        runs-on: latest-ubuntu
+        runs-on: ubuntu-latest
         steps:
         - name: docker build
           run: docker build -t docker.io/dockerUsername/imageName:latest  

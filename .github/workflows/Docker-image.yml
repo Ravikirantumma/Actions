@@ -16,13 +16,13 @@ jobs:
         env:
           CONTAINER_REGISTRY: docker.io
           DOCKER_USERNAME: tummaravikiranreddy1
-          IMAGE_NAME: github-action-nginx
-        run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+          IMAGE_NAME: caliculator
+        run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest .
 
       - name: docker login
         env:
           DOCKER_USERNAME: tummaravikiranreddy1
-          DOCKER_PASSWORD: RAVIKIRAN
+          DOCKER_PASSWORD: R@vikiran123
         run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
       - name: Docker publish

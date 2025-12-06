@@ -25,11 +25,12 @@ jobs:
         run: echo docker login --username=$DOCKER_USERNAME --password=XXXXXX
 
       - name: Docker publish
-        run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+        run: echo docker push $CONTAINER_REGISTRY/{{$DOCKER_USERNAME}}/$IMAGE_NAME:latest
 
   deploy:
     needs: docker
     runs-on: ubuntu-latest
     steps:
       - name: docker run
-        run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+        run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/{{$DOCKER_USERNAME}}/$IMAGE_NAME:latest
+        sleep 200s

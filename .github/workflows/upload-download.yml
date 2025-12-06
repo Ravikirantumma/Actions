@@ -1,53 +1,57 @@
-name: upload nadownlaod the files
+name: upload and download the files
+
 on:
-    push:      
-      branches:
+  push:
+    branches:
       - main
+
 jobs:
-    jobs_first1:
-        runs-on: ubuntu-latest
-        steps:
-        - name: forst creating the file
-          uses: sudo apt-get update && sudo apt-get -y install cowsay
-          
-        - name: execute cowsay cmd
-          uses: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt"
+  jobs_first1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
 
-        - name: upload text file 
-          uses: actions/upload-artifact@v4
-          with:
-            name: my-artifact
-            path: dragon.txt
+      - name: install cowsay
+        run: sudo apt-get update && sudo apt-get -y install cowsay
 
-    jobs_first2:
-        needs : jobs_first1
-        runs-on: ubuntu-lates
-        steps:
-            - name: install java version
-              uses: actions/checkout@v4
-              with:
-                java-version: '17'
-                distribution: 'temurin'
+      - name: execute cowsay cmd
+        run: cowsay -f dragon "how are you today Dragon" > dragon.txt
 
-            - name: download text file 
-              uses: actions/upload-artifact@v4
-              with:
-                name: dragon-text file
-    
-    jobs_second3:
-        needs: jobs_first2
-        runs-on: ubuntu-lates
-        steps:
-            - name: install java version
-              uses: actions/checkout@v4
-              with:
-                java-version: '17'
-                distribution: 'temurin'
+      - name: upload text file
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: dragon.txt
 
-            - name: download text file 
-              uses: actions/upload-artifact@v4
-              with:
-                name: dragon-text file
-            - name: view the file
-              uses: cat dragon.txt
+  jobs_first2:
+    needs: jobs_first1
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
 
+      - name: download text file
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: .
+
+      - name: list files
+        run: ls -lrt
+
+  jobs_second3:
+    needs: jobs_first2
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: download text file
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: .
+
+      - name: view the file
+        run: cat dragon.txt

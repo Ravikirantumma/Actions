@@ -15,21 +15,21 @@ jobs:
       - name: docker build
         env:
           CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: RAVIKIRAN
+          DOCKER_USERNAME: tummaravikiranreddy1
           IMAGE_NAME: github-action-nginx
         run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
       - name: docker login
         env:
-          DOCKER_USERNAME: RAVIKIRAN
+          DOCKER_USERNAME: tummaravikiranreddy1
           DOCKER_PASSWORD: RAVIKIRAN
         run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
       - name: Docker publish
         env:
           CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: RAVIKIRAN
-          IMAGE_NAME: github-action-nginx
+          DOCKER_USERNAME: tummaravikiranreddy1
+          IMAGE_NAME: caliculator
         run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
   deploy:
@@ -39,6 +39,6 @@ jobs:
       - name: docker run
         env:
           CONTAINER_REGISTRY: docker.io
-          DOCKER_USERNAME: RAVIKIRAN
-          IMAGE_NAME: github-actions-nginx
+          DOCKER_USERNAME: tummaravikiranreddy1
+          IMAGE_NAME: caliculator
         run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest

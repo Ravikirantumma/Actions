@@ -1,4 +1,4 @@
-name: docker image removed the secrets on this action
+name: docker image removed the secrets on this action 1
 
 on:
   workflow_dispatch:
@@ -35,3 +35,4 @@ jobs:
         run: |
           echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
           sleep 200s
+
